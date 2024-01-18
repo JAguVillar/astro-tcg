@@ -1,0 +1,25 @@
+---
+import Carta from "./Carta.astro";
+
+const res = await fetch(
+  "https://api.pokemontcg.io/v2/cards?q=name:mew&pageSize=10"
+);
+let data = await res.json();
+data = data.data;
+console.log(data);
+---
+
+<header class="py-4 px-4 mx-auto max-w-xl lg:py-8 lg:px-6">
+  <div class="mx-auto text-center mb-8 lg:mb-16">
+    <input
+      type="text"
+      id="rounded-email"
+      class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+      placeholder="Your email"
+    />
+  </div>
+</header>
+
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+  {data.map((card) => <Carta id={card.id} img={card.images.small} />)}
+</div>
