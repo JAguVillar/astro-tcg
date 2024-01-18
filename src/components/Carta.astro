@@ -1,5 +1,5 @@
 ---
-import{}
+import { cardIds } from "../lib/data";
 interface Props {
   id: string;
 }
@@ -12,7 +12,6 @@ const url = cardData.data.images.small;
 
 <script define:vars={{ url }}>
   console.log(url);
-
 </script>
 
 <a
