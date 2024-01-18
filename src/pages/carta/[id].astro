@@ -1,10 +1,16 @@
 ---
+import Carta from "../../components/Carta.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const { id } = Astro.params;
 const carta = id;
+
+export function getStaticPaths() {
+  return [{ params: { id: "si1-1" } }, { params: { id: "pop4-4" } }];
+}
 ---
 
 <Layout title="card">
-  <picture> <img src={} transition:name=`carta ${id} box` /></picture>
+  <Carta id={id} />
+  <!-- <ResumenCarta id={id} /> -->
 </Layout>

@@ -1,22 +1,29 @@
 ---
+import{}
 interface Props {
   id: string;
-  img: string;
 }
 
-const { id, img } = Astro.props;
+const { id } = Astro.props;
+const cardResponse = await fetch(`https://api.pokemontcg.io/v2/cards/${id}`);
+const cardData = await cardResponse.json();
+const url = cardData.data.images.small;
 ---
 
+<script define:vars={{ url }}>
+  console.log(url);
+
+</script>
+
 <a
-  href={`/carta/${id}`}
+  href=`/carta/${id}`
   class="transition duration-300 ease-in-out hover:ease-in hover:-translate-y-1 hover:scale-110"
-  transition:name=`carta ${id} box`
 >
   <img
     class="rounded-md"
-    src={img}
+    src={url}
     alt=""
     srcset=""
-    transition:name=`carta ${id} image`
+    transition:name=`carta-${id}`
   />
 </a>
