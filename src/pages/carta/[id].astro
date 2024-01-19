@@ -1,16 +1,24 @@
 ---
 import Carta from "../../components/Carta.astro";
+import ResumenCarta from "../../components/ResumenCarta.astro";
 import Layout from "../../layouts/Layout.astro";
+// import { cards } from "../../lib/data";
+import { cards } from "../../lib/data";
 
 const { id } = Astro.params;
 const carta = id;
+const paths = cards;
 
-export function getStaticPaths() {
-  return [{ params: { id: "si1-1" } }, { params: { id: "pop4-4" } }];
-}
+const card = paths.find((p) => p.id === id);
+
+// export function getStaticPaths() {
+//   return paths;
+// }
 ---
 
 <Layout title="card">
   <Carta id={id} />
-  <!-- <ResumenCarta id={id} /> -->
+  <div class="text-zinc">Hola</div>
+
+  <ResumenCarta id={id} />
 </Layout>

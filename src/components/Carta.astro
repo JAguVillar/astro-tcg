@@ -1,5 +1,4 @@
 ---
-import { cardIds } from "../lib/data";
 interface Props {
   id: string;
 }
@@ -7,11 +6,11 @@ interface Props {
 const { id } = Astro.props;
 const cardResponse = await fetch(`https://api.pokemontcg.io/v2/cards/${id}`);
 const cardData = await cardResponse.json();
-const url = cardData.data.images.small;
+const url = cardData.data.images.large;
 ---
 
 <script define:vars={{ url }}>
-  console.log(url);
+  // console.log(url);
 </script>
 
 <a
