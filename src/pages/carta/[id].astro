@@ -1,7 +1,7 @@
 ---
 import Carta from "../../components/Carta.astro";
 import ResumenCarta from "../../components/ResumenCarta.astro";
-import Layout from "../../layouts/Layout.astro";
+import Layout_Carta from "../../layouts/Layout_Carta.astro";
 // import { cards } from "../../lib/data";
 import { cards } from "../../lib/data";
 
@@ -16,9 +16,11 @@ const card = paths.find((p) => p.id === id);
 // }
 ---
 
-<Layout title="card">
-  <Carta id={id} />
-  <div class="text-zinc">Hola</div>
-
-  <ResumenCarta id={id} />
-</Layout>
+<Layout_Carta title="card">
+  <div class="flex">
+    <div class="flex-initial">
+      <Carta id={id} />
+    </div>
+    <ResumenCarta id={id} />
+  </div>
+</Layout_Carta>

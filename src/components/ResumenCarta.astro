@@ -4,9 +4,18 @@ const { id } = Astro.props;
 const res = await fetch(`https://api.pokemontcg.io/v2/cards/${id}`);
 let data = await res.json();
 let fetched = data.data;
+
 console.log(fetched);
 ---
 
-<div>
-  {fetched.name}
+<div class="pl-32 flex flex-col">
+  <div class="text-white">
+    {fetched.name}
+  </div>
+  <div class="text-white">
+    {"HP " + fetched.hp}
+  </div>
+  <div class="text-white">
+    {fetched.types.map((type) => <span>{type}</span>)}
+  </div>
 </div>
