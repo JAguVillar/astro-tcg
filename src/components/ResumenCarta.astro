@@ -12,16 +12,35 @@ let fetched = data.data;
 console.log(fetched);
 ---
 
-<div class="pl-32 flex flex-col">
-  <h1 class="text-white">
-    {fetched.name}
-  </h1>
-  <div class="text-white">
-    {"HP " + fetched.hp}
-  </div>
-  <div class="text-white">
-    {fetched.types.map((type) => <span>{type}</span>)}
-  </div>
+<div class="pl-16 flex flex-col">
+  <h3 class="text-white">
+    <span>
+      {fetched?.name}
+    </span>
+    {
+      fetched.types ? (
+        <span>
+          {fetched?.types.map((type) => (
+            <span>{type + " "}</span>
+          ))}
+        </span>
+      ) : (
+        ""
+      )
+    }
+    {fetched.hp ? <span>{"HP " + fetched?.hp}</span> : ""}
+  </h3>
+  <h4 class="text-white">
+    <span>
+      {fetched?.supertype}
+    </span>
+    <span>
+      {fetched?.subtypes.map((sub) => <span>{sub + " "}</span>)}
+    </span>
+    <span>
+      {fetched.evolvesFrom ? "Evoluciona de: " + fetched.evolvesFrom : ""}
+    </span>
+  </h4>
 </div>
 
 <style>
