@@ -1,4 +1,8 @@
 ---
+// Supports weights 300-700
+import "@fontsource-variable/signika-negative";
+import "@fontsource/poppins";
+
 const { id } = Astro.props;
 
 const res = await fetch(`https://api.pokemontcg.io/v2/cards/${id}`);
@@ -9,9 +13,9 @@ console.log(fetched);
 ---
 
 <div class="pl-32 flex flex-col">
-  <div class="text-white">
+  <h1 class="text-white">
     {fetched.name}
-  </div>
+  </h1>
   <div class="text-white">
     {"HP " + fetched.hp}
   </div>
@@ -19,3 +23,9 @@ console.log(fetched);
     {fetched.types.map((type) => <span>{type}</span>)}
   </div>
 </div>
+
+<style>
+  h1 {
+    font-family: "Poppins", sans-serif;
+  }
+</style>
