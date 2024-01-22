@@ -1,4 +1,6 @@
 ---
+import "@fontsource/prompt";
+import "@fontsource-variable/rubik";
 interface Props {
   id: string;
 }
@@ -10,6 +12,8 @@ const cardData = await cardResponse.json();
 const url = cardData.data.images.small;
 const symbol = cardData.data.set.images.symbol;
 const number = cardData.data.number;
+
+console.log(number);
 ---
 
 <script define:vars={{ url }}>
@@ -29,7 +33,7 @@ const number = cardData.data.number;
       transition:name=`carta-${id}`
     />
     <div
-      class="absolute bottom-0 left-0 bg-white rounded-lg border-transparent"
+      class="absolute bottom-0 left-0 bg-white text-black rounded-lg border-transparent rubik font-semibold"
     >
       <div style="width: 24px" class="text-center">{number}</div>
     </div>
@@ -40,3 +44,12 @@ const number = cardData.data.number;
     </div>
   </div>
 </a>
+
+<style>
+  .prompt {
+    font-family: "Prompt", sans-serif;
+  }
+  .rubik {
+    font-family: "Rubik Variable", sans-serif;
+  }
+</style>

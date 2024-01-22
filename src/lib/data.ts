@@ -29,6 +29,6 @@ iniciar();
 
 export const cards: Card[] = cardIds
 
-// export function example(){
-//     return [{ params: { id: "si1-1" } }, { params: { id: "pop4-4" } }]
-// }
+export function getImg(type){
+  return `/types/${type}.png`
+}

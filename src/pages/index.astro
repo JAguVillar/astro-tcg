@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Carta from "../components/Carta.astro";
 
 const res = await fetch(
-  "https://api.pokemontcg.io/v2/cards?q=name:gardevoir&pageSize=10"
+  "https://api.pokemontcg.io/v2/cards?q=name:swampert&pageSize=50"
 );
 let data = await res.json();
 data = data.data;
@@ -23,7 +23,6 @@ data = data.data;
     </div>
   </header>
   <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-    <!-- {data.map((card) => <Carta id={card.id} img={card.images.small} />)} -->
     {data.map((card) => <Carta id={card.id} />)}
   </div>
 </Layout>
