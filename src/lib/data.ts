@@ -31,3 +31,28 @@ export const cards: Card[] = cardIds
 export function getImg(type){
   return `/types/${type}.png`
 }
+
+export async function yourAsyncFunction() {
+  try {
+    const result = await getPrice();
+    console.log(result);
+    return result
+  } catch (error) {
+    console.error("Error in yourAsyncFunction:", error);
+  }
+}
+
+
+export async function getPrice() {
+  try {
+    const response = await fetch('https://dolarapi.com/v1/dolares/blue');
+    const data = await response.json();
+    console.log(data);
+    
+    return data.compra;
+    
+  } catch (error) {
+    console.error("Error fetching price:", error);
+    throw error; // Re-throw the error to propagate it
+  }
+}

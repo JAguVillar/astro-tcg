@@ -1,5 +1,6 @@
 ---
 import Carta from "../../components/Carta.astro";
+import Precios from "../../components/Precios.astro";
 import ResumenCarta from "../../components/ResumenCarta.astro";
 import Layout_Carta from "../../layouts/Layout_Carta.astro";
 // import { cards } from "../../lib/data";
@@ -11,16 +12,24 @@ const paths = cards;
 
 const card = paths.find((p) => p.id === id);
 
-// export function getStaticPaths() {
-//   return paths;
-// }
+const res = await fetch(`https://api.pokemontcg.io/v2/cards/${id}`);
+let data = await res.json();
+let fetched = data.data;
+console.log(fetched);
 ---
 
 <Layout_Carta title="card">
   <div class="flex">
-    <div class="self-start">
-      <Carta id={id} />
+    <div>
+      <div class="self-start">
+        <Carta id={id} />
+      </div>
+      <div>
+        <Precios prices={fetched.cardmarket} />
+      </div>
     </div>
-    <ResumenCarta id={id} />
+    <div>
+      <ResumenCarta id={id} />
+    </div>
   </div>
 </Layout_Carta>

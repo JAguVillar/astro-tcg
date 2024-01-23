@@ -8,9 +8,12 @@ import { getImg } from "../../lib/data.ts";
 
 
 const { fetched } = Astro.props;
+
+console.log(fetched);
+
 ---
 
-<div class="pl-16 flex flex-col divide-y-2 text-white">
+<div class="pl-16 flex flex-col divide-y-2 ">
   <div class="flex justify-between items-center prompt ">
     <h3 class=" items-center font-semibold">
       {fetched?.name}
@@ -47,7 +50,7 @@ const { fetched } = Astro.props;
     </div>
   </div>
 
-  <div class="text-white flex justify-between items-center py-4 prompt">
+  <div class="text-black flex justify-between items-center py-4 prompt">
     <div class="flex gap-2">
       <h6 class="font-semibold">
         {fetched?.supertype}
@@ -63,7 +66,7 @@ const { fetched } = Astro.props;
       </h6>
     </div>
   </div>
-  
+  {fetched?.abilities ?
   <div class="flex flex-col rubik py-4">
     <h6 class="pb-4 font-semibold">
       Habilidades
@@ -73,7 +76,7 @@ const { fetched } = Astro.props;
         <div class="flex flex-col">
           {fetched?.abilities.map((abilitie) => (
             <div class="flex gap-2 items-center">
-              <h6 class="border-2 border-transparent py-1 px-3 rounded-md bg-green-600">{abilitie.type}</h6>
+              <h6 class="border-2 border-red-600 py-1 px-3 rounded-md text-red-600 font-semibold">{abilitie.type}</h6>
               <h6 class="px-4 font-semibold">{abilitie.name}</h6>
             </div>
             <h6 class="pt-4">{abilitie.text}</h6>
@@ -84,6 +87,7 @@ const { fetched } = Astro.props;
       )
     }
   </div>
+   : ''}
 
   <div class="flex flex-col rubik py-4">
     <h6 class="pb-4 font-semibold">
@@ -97,6 +101,7 @@ const { fetched } = Astro.props;
             <div class="flex gap-2 items-center">
               {
           fetched.types ? (
+            
             <div class="flex gap-2">
               {attack?.cost.map((cost) => (
                 <img
@@ -107,11 +112,13 @@ const { fetched } = Astro.props;
                 />
               ))}
             </div>
-          ) : (
-            ""
+            ) : (
+              ""
+              
           )
         }
-              <h6 class="px-4 font-semibold">{attack.name}</h6>
+              <h6 class="px-4 font-semibold">{attack?.name}</h6>
+              <h6 class="font-semibold">{attack?.damage}</h6>
             </div>
             <h6 class="pt-2">{attack.text}</h6>
           </div>
@@ -147,50 +154,100 @@ const { fetched } = Astro.props;
 
 
   <div class="grid gap-8 grid-cols-3">
-    <div class="flex flex-col">
+    <div class="flex flex-col p-4 p-4">
     <h6 class="pb-4 font-semibold">
       Debilidad
     </h6>
+    {fetched?.weaknesses ? 
+    <div class="flex gap-2">
+      {fetched?.weaknesses.map((weakness) => (
+        <img
+        src={getImg(weakness.type)}
+        alt={weakness.type}
+        srcset=""
+        style="width:25px"
+        />
+        <h6 class="font-semibold">{weakness.value}</h6>
+        ))}
+        </div>
+      : <h6 class="font-semibold">No tiene</h6>}
     </div>
-    <div class="flex flex-col">
+      <div class="flex flex-col p-4">
     <h6 class="pb-4 font-semibold">
       Resistencia
     </h6>
+    {fetched?.ressistances ? 
+    <div class="flex gap-2">
+      {fetched?.resistances.map((resistance) => (
+        <img
+        src={getImg(resistance.type)}
+        alt={resistance.type}
+        srcset=""
+        style="width:25px"
+        />
+        <h6 class="font-semibold">{resistance.value}</h6>
+        ))}
+        </div>
+      : <h6 class="font-semibold">No tiene</h6>}
     </div>
-    <div class="flex flex-col">
+    
+    <div class="flex flex-col p-4">
     <h6 class="pb-4 font-semibold">
       Coste de retirada
+      {fetched?.retreatCost ? 
+      <div class="flex gap-2">
+        {fetched?.retreatCost.map((cost) => (
+                <img
+                src={getImg(cost)}
+                alt={cost}
+                srcset=""
+                style="width:25px"
+                />
+                ))}
+                </div>
+            : <h6>No tiene</h6>  }
     </h6>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col p-4">
     <h6 class="pb-4 font-semibold">
       Expansión
     </h6>
+    <div class="flex gap-2">
+      <h6 class="font-semibold">{fetched?.set.series + ' - ' +fetched?.set.name}</h6>
     </div>
-    <div class="flex flex-col">
+    </div>
+    <div class="flex flex-col p-4">
     <h6 class="pb-4 font-semibold">
       Número
     </h6>
+    <h6 class="font-semibold">{fetched?.number}</h6>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col p-4">
     <h6 class="pb-4 font-semibold">
       Rareza
     </h6>
+    <h6 class="font-semibold">{fetched?.rarity}</h6>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col p-4">
     <h6 class="pb-4 font-semibold">
       Artista
     </h6>
+    <h6 class="font-semibold">{fetched?.artist}</h6>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col p-4">
     <h6 class="pb-4 font-semibold">
       Formato
     </h6>
     </div>
-    <div class="flex flex-col">
-    <h6 class="pb-4 font-semibold">
-      Regulación
-    </h6>
+    <div class="flex flex-col p-4">
+{fetched?.regulationMark
+?
+<h6 class="pb-4 font-semibold">
+  Regulación
+  </h6>
+    <h5 class="font-semibold">{fetched.regulationMark}</h5>
+
+: <h6 class="font-semibold">No disponible</h6> }
     </div>
   </div>
   

@@ -9,6 +9,8 @@ const { id } = Astro.props;
 const cardResponse = await fetch(`https://api.pokemontcg.io/v2/cards/${id}`);
 const cardData = await cardResponse.json();
 
+console.log(cardData);
+
 const url = cardData.data.images.small;
 const symbol = cardData.data.set.images.symbol;
 const number = cardData.data.number;
@@ -30,11 +32,6 @@ const number = cardData.data.number;
       srcset=""
       transition:name=`carta-${id}`
     />
-    <div
-      class="absolute bottom-0 left-0 bg-white text-black rounded-lg border-transparent rubik font-semibold"
-    >
-      <div style="width: 24px" class="text-center">{number}</div>
-    </div>
     <div
       class="absolute bottom-0 right-0 bg-white rounded-lg border-transparent"
     >

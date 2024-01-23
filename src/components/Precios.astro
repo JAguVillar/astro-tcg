@@ -1,0 +1,40 @@
+---
+import "@fontsource-variable/signika-negative";
+import "@fontsource/poppins";
+import "@fontsource/prompt";
+import "@fontsource-variable/rubik";
+
+import { yourAsyncFunction } from "../lib/data.ts";
+
+console.log(yourAsyncFunction());
+
+const { prices } = Astro.props;
+console.log(prices);
+---
+
+<div class="flex flex-col rubik pt-4">
+  <div class="flex gap-4 justify-between">
+    <div>Promedio:</div>
+    <div>
+      {"$" + prices.prices.averageSellPrice}
+    </div>
+  </div>
+  <div class="flex gap-4 justify-between">
+    <div>Mínimo:</div>
+    <div>
+      {"$" + prices.prices.lowPrice + "/" + yourAsyncFunction()}
+    </div>
+  </div>
+  <div class="flex gap-4">
+    <a href={prices.url}> Ver todos los precios</a>
+  </div>
+  <div></div>
+</div>
+<style>
+  .prompt {
+    font-family: "Prompt", sans-serif;
+  }
+  .rubik {
+    font-family: "Rubik Variable", sans-serif;
+  }
+</style>
