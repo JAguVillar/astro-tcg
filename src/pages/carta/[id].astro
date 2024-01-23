@@ -5,8 +5,8 @@ import Layout_Carta from "../../layouts/Layout_Carta.astro";
 // import { cards } from "../../lib/data";
 import { cards } from "../../lib/data";
 
-const { id } = Astro.params;
-const carta = id;
+const { id, supertype } = Astro.params;
+
 const paths = cards;
 
 const card = paths.find((p) => p.id === id);

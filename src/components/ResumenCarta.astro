@@ -2,7 +2,11 @@
 import "@fontsource-variable/signika-negative";
 import "@fontsource/poppins";
 import "@fontsource/prompt";
-import '@fontsource-variable/rubik';
+import "@fontsource-variable/rubik";
+
+import Pokemon from "./Resumenes/Pokemon.astro";
+import Energy from "./Resumenes/Energy.astro";
+import Trainer from "./Resumenes/Trainer.astro";
 
 import { getImg } from "../lib/data.ts";
 
@@ -14,129 +18,21 @@ let fetched = data.data;
 console.log(fetched);
 ---
 
-<div class="pl-16 flex flex-col divide-y-2">
-  <div class="flex justify-between items-center prompt">
-    <h3 class="text-white items-center font-semibold">
-      {fetched?.name}
-    </h3>
-    <div>
-      <div class="flex items-center gap-4">
-        {
-          fetched.hp ? (
-            
-              <h3 class="font-semibold">HP</h3>
-              <h3 class="font-normal">{fetched?.hp}</h3>
-            
-          ) : (
-            ""
-          )
-        }
-        {
-          fetched.types ? (
-            <div>
-              {fetched?.types.map((type) => (
-                <img
-                  src={getImg(type)}
-                  alt={type}
-                  srcset=""
-                  style="width:25px"
-                />
-              ))}
-            </div>
-          ) : (
-            ""
-          )
-        }
-      </div>
-    </div>
-  </div>
-
-  <div class="text-white flex justify-between items-center py-4">
-    <div class="flex gap-2">
-      <h5>
-        {fetched?.supertype}
-      </h5>
-      <h5>-</h5>
-      <h5>
-        {fetched?.subtypes.map((sub) => <span>{sub + " "}</span>)}
-      </h5>
-    </div>
-    <div>
-      <h5>
-        {fetched.evolvesFrom ? "Evoluciona de: " + fetched.evolvesFrom : ""}
-      </h5>
-    </div>
-  </div>
-  
-  <div class="flex flex-col rubik py-4">
-    <h5 class="pb-2">
-      Habilidades:
-    </h5>
-    {
-      fetched.abilities ? (
-        <div class="flex flex-col">
-          {fetched?.abilities.map((abilitie) => (
-            <div class="flex gap-2 items-center">
-              <h6 class="border-2 border-red-500 py-1 px-3 rounded-md">{abilitie.type}</h6>
-              <h5 class="px-4 font-semibold">{abilitie.name}</h5>
-            </div>
-            <h5 class="pt-4">{abilitie.text}</h5>
-          ))}
-        </div>
-      ) : (
-        ""
-      )
-    }
-  </div>
-  <div class="flex flex-col rubik py-4">
-    <h5 class="pb-2">
-      Ataques:
-    </h5>
-    {
-      fetched.attacks ? (
-        <div class="flex flex-col">
-          {fetched?.attacks.map((attack) => (
-            <div class="pb-4">
-              
-            <div class="flex gap-2 items-center">
-              {
-          fetched.types ? (
-            <div class="flex gap-2">
-              {attack?.cost.map((cost) => (
-                <img
-                  src={getImg(cost)}
-                  alt={cost}
-                  srcset=""
-                  style="width:25px"
-                />
-              ))}
-            </div>
-          ) : (
-            ""
-          )
-        }
-              <h5 class="px-4 font-semibold">{attack.name}</h5>
-            </div>
-            <h5 class="pt-2">{attack.text}</h5>
-          </div>
-          ))}
-        </div>
-        
-      ) : (
-        ""
-      )
-    }
-  </div>
-  
-  </div>
-
-
+{
+  fetched.supertype == "Pokémon" ? (
+    <Pokemon fetched={fetched} />
+  ) : fetched.supertype == "Trainer" ? (
+    <Trainer fetched={fetched} />
+  ) : (
+    <Energy fetched={fetched} />
+  )
+}
 
 <style>
-  .prompt{
+  .prompt {
     font-family: "Prompt", sans-serif;
   }
-  .rubik{
+  .rubik {
     font-family: "Rubik Variable", sans-serif;
   }
 </style>

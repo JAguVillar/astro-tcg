@@ -12,7 +12,6 @@ async function fetchCards() {
   cards.forEach(element => {
     cardIds.push({params: {id: element.id}});
   });
-  console.log(cardIds);
   
   return cards; 
 }

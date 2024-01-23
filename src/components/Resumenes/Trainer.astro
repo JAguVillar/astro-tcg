@@ -1,0 +1,207 @@
+---
+import "@fontsource-variable/signika-negative";
+import "@fontsource/poppins";
+import "@fontsource/prompt";
+import "@fontsource-variable/rubik";
+
+import { getImg } from "../../lib/data.ts";
+
+const { fetched } = Astro.props;
+---
+
+<!-- <div class="pl-16 flex flex-col divide-y-2 text-white">
+  <div class="flex justify-between items-center prompt ">
+    <h3 class=" items-center font-semibold">
+      {fetched?.name}
+    </h3>
+    <div>
+      <div class="flex items-center gap-4">
+        {
+          fetched.hp ? (
+
+              <h3 class="font-semibold">HP</h3>
+              <h3 class="font-normal">{fetched?.hp}</h3>
+
+          ) : (
+            ""
+          )
+        }
+        {
+          fetched.types ? (
+            <div>
+              {fetched?.types.map((type) => (
+                <img
+                  src={getImg(type)}
+                  alt={type}
+                  srcset=""
+                  style="width:25px"
+                />
+              ))}
+            </div>
+          ) : (
+            ""
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="text-white flex justify-between items-center py-4 prompt">
+    <div class="flex gap-2">
+      <h6 class="font-semibold">
+        {fetched?.supertype}
+      </h6>
+      <h6>-</h6>
+      <h6 class="font-semibold">
+        {fetched?.subtypes.map((sub) => <span>{sub + " "}</span>)}
+      </h6>
+    </div>
+    <div>
+      <h6 class="font-semibold">
+        {fetched.evolvesFrom ? "Evoluciona de: " + fetched.evolvesFrom : ""}
+      </h6>
+    </div>
+  </div>
+
+  <div class="flex flex-col rubik py-4">
+    <h6 class="pb-4 font-semibold">
+      Habilidades
+    </h6>
+    {
+      fetched.abilities ? (
+        <div class="flex flex-col">
+          {fetched?.abilities.map((abilitie) => (
+            <div class="flex gap-2 items-center">
+              <h6 class="border-2 border-transparent py-1 px-3 rounded-md bg-green-600">{abilitie.type}</h6>
+              <h6 class="px-4 font-semibold">{abilitie.name}</h6>
+            </div>
+            <h6 class="pt-4">{abilitie.text}</h6>
+          ))}
+        </div>
+      ) : (
+        ""
+      )
+    }
+  </div>
+
+  <div class="flex flex-col rubik py-4">
+    <h6 class="pb-4 font-semibold">
+      Ataques
+    </h6>
+    {
+      fetched.attacks ? (
+        <div class="flex flex-col">
+          {fetched?.attacks.map((attack) => (
+            <div class="pb-4">
+            <div class="flex gap-2 items-center">
+              {
+          fetched.types ? (
+            <div class="flex gap-2">
+              {attack?.cost.map((cost) => (
+                <img
+                  src={getImg(cost)}
+                  alt={cost}
+                  srcset=""
+                  style="width:25px"
+                />
+              ))}
+            </div>
+          ) : (
+            ""
+          )
+        }
+              <h6 class="px-4 font-semibold">{attack.name}</h6>
+            </div>
+            <h6 class="pt-2">{attack.text}</h6>
+          </div>
+          ))}
+        </div>
+
+      ) : (
+        ""
+      )
+    }
+  </div>
+
+
+  <div class="flex flex-col rubik py-4">
+    <h6 class="pb-4 font-semibold">
+      Reglas
+    </h6>
+    {
+      fetched.rules ? (
+        <div class="flex flex-col">
+          {fetched?.rules.map((rule) => (
+            <div class="flex flex-col pb-4">
+              <h6 class="border-2 border-blue-500 py-1 px-3 rounded-md text-blue-500 w-fit">Regla</h6>
+              <h6 class="pt-4">{rule}</h6>
+              </div>
+          ))}
+        </div>
+      ) : (
+        ""
+      )
+    }
+  </div>
+
+
+  <div class="grid gap-8 grid-cols-3">
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Debilidad
+    </h6>
+    </div>
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Resistencia
+    </h6>
+    </div>
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Coste de retirada
+    </h6>
+    </div>
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Expansión
+    </h6>
+    </div>
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Número
+    </h6>
+    </div>
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Rareza
+    </h6>
+    </div>
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Artista
+    </h6>
+    </div>
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Formato
+    </h6>
+    </div>
+    <div class="flex flex-col">
+    <h6 class="pb-4 font-semibold">
+      Regulación
+    </h6>
+    </div>
+  </div>
+
+
+  </div> -->
+<div class="text-white">Trainer</div>
+
+<style>
+  .prompt {
+    font-family: "Prompt", sans-serif;
+  }
+  .rubik {
+    font-family: "Rubik Variable", sans-serif;
+  }
+</style>
